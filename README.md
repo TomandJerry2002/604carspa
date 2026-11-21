@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 604 Car Spa website
 
 React + Vite build of the 604 Car Spa design.
@@ -36,3 +37,6 @@ Hash routes: `#/`, `#/interior`, `#/inside-out`, `#/exterior`, `#/ceramic`, `#/c
 - Add payment methods to the FAQ.
 # 604carspa
 # 604carspaweb
+=======
+# 604carspa
+>>>>>>> 32e9ebe9bbc50dc87980a864c84ffe319d2173c2
