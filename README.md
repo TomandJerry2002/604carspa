@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 604 Car Spa website
 
 React + Vite build of the 604 Car Spa design.
@@ -35,9 +34,3 @@ Hash routes: `#/`, `#/interior`, `#/inside-out`, `#/exterior`, `#/ceramic`, `#/c
 - Replace the transformation video (`public/media/transformation.mp4`) with a full-resolution original.
 - Replace the image-slot placeholders with real photos.
 - Add payment methods to the FAQ.
-# 604carspa
-# 604carspaweb
-=======
-# 604carspa
->>>>>>> 32e9ebe9bbc50dc87980a864c84ffe319d2173c2
-# 604carspaweb

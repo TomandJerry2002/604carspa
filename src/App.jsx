@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from './assets/logo.png';
 
 /* Converted from the 604 Car Spa design. Logic lives in renderVals(); render() maps it to JSX. */
 
@@ -229,7 +230,7 @@ class App extends React.Component {
       groups = [this.group('interior', v, { noLink: true })]; pkgHeading = 'Interior packages';
       faqKeys = ['stains', 'time', 'rain', 'water', 'apt', 'pay'];
     } else if (r.page === 'inside-out') {
-      hero = { eyebrow: 'Inside & out detailing', title: 'Inside and out, in one visit.', intro: 'Full interior and exterior care in a single appointment. Choose how deep you want to go.', video: './media/reel-063.mp4', slotId: 'hero-insideout', slotText: 'Photo: finished car, doors open, in a driveway' };
+      hero = { eyebrow: 'Inside & out detailing', title: 'Inside and out, in one visit.', intro: 'Full interior and exterior care in a single appointment. Choose how deep you want to go.', video: './media/reel-063.mp4', start: 2.95, slotId: 'hero-insideout', slotText: 'Photo: finished car, doors open, in a driveway' };
       groups = [this.group('insideout', v, { noLink: true })]; pkgHeading = 'Inside & out packages';
     } else if (r.page === 'exterior') {
       hero = { eyebrow: 'Exterior detailing', title: 'A proper hand wash, at your door.', intro: 'Hand wash, wheels, tires and glass, up to clay bar, sealant and a one-step machine polish.', video: './media/reel-489.mp4', slotId: 'hero-exterior', slotText: 'Photo: foam hand wash on site' };
@@ -279,7 +280,15 @@ class App extends React.Component {
       toggleMenu: () => this.setState(s => ({ menu: !s.menu })), closeMenu: () => this.setState({ menu: false }),
       navLinks: [{ label: 'Interior', href: '#/interior' }, { label: 'Inside & Out', href: '#/inside-out' }, { label: 'Exterior', href: '#/exterior' }, { label: 'Ceramic', href: '#/ceramic' }, { label: 'Areas', href: '#/city/surrey' }],
       isHome: r.page === 'home', isInner: r.page !== 'home', isCity: r.page === 'city', isProblem: r.page === 'problem', isCeramic: r.page === 'ceramic',
-      showBA: ['home', 'interior', 'inside-out', 'exterior', 'city'].includes(r.page),
+      showBA: ['home', 'interior'].includes(r.page),
+      showNote: !['home', 'interior'].includes(r.page),
+      noteText: ({
+        'inside-out': 'We clean the cabin and wash the outside in one visit: vacuum, wipe-down, steam and shampoo inside, then a hand wash, wheels, tires and glass outside.',
+        exterior: 'We hand wash the paint and clean the wheels, tires and glass. Clay bar, sealant or a one-step machine polish can be added on.',
+        ceramic: 'We decontaminate and polish the paint, then apply a sealant or a 1-year ceramic coating to protect the finish.',
+        city: 'We bring the equipment and detail your car inside and out, wherever it is parked in ' + (r.city || 'your city') + '.',
+        problem: 'We treat the problem area with steam, shampoo and hot-water extraction. If it can\'t be fully fixed, we tell you before we start.'
+      })[r.page] || '',
       showSwarn: r.page === 'home' || r.page === 'city', showReviews: r.page !== 'problem',
       addonsRot: this.state.addons ? 'rotate(45deg)' : 'rotate(0deg)', addonsToggle: e => this.setState({ addons: e.currentTarget.open }),
       loaderOn: this.state.loader !== 'done', loaderOpacity: this.state.loader === 'out' ? 0 : 1, loaderPE: this.state.loader === 'out' ? 'none' : 'auto', loaderShift: this.state.loader === 'out' ? 'translateY(-8px) scale(0.98)' : 'none',
@@ -318,7 +327,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { addonsRot, addonsToggle, baPairs, city, cityOptions, closeMenu, faqs, footerServices, galHasMore, galMoreLabel, galToggle, gallery, goPackages, hero, heroVideo, isCeramic, isCity, isDesktop, isHome, isInner, isMobile, isProblem, lbAlt, lbClose, lbCount, lbNext, lbOpen, lbPrev, lbSrc, loaderOn, loaderOpacity, loaderPE, loaderShift, menuLabel, menuOpen, navLinks, pickCity, pkgGroups, pkgHeading, problem, problemTabs, reviews, showBA, showMobileMenu, showReviews, showSwarn, sliderPE, steps, stripBottom, stripBottom2, stripTop, stripTop2, toggleMenu, vehicles } = this.renderVals();
+    const { showNote, noteText, addonsRot, addonsToggle, baPairs, city, cityOptions, closeMenu, faqs, footerServices, galHasMore, galMoreLabel, galToggle, gallery, goPackages, hero, heroVideo, isCeramic, isCity, isDesktop, isHome, isInner, isMobile, isProblem, lbAlt, lbClose, lbCount, lbNext, lbOpen, lbPrev, lbSrc, loaderOn, loaderOpacity, loaderPE, loaderShift, menuLabel, menuOpen, navLinks, pickCity, pkgGroups, pkgHeading, problem, problemTabs, reviews, showBA, showMobileMenu, showReviews, showSwarn, sliderPE, steps, stripBottom, stripBottom2, stripTop, stripTop2, toggleMenu, vehicles } = this.renderVals();
     return (
       <>
       <div style={{minHeight: "100vh", display: "flex", flexDirection: "column"}}>
@@ -326,14 +335,7 @@ class App extends React.Component {
           <>
             <div role="status" aria-label="Loading 604 Car Spa" style={{position: "fixed", inset: "0", zIndex: "300", background: "#0D1012", display: "flex", alignItems: "center", justifyContent: "center", opacity: loaderOpacity, transition: "opacity 450ms cubic-bezier(0.23,1,0.32,1)", pointerEvents: loaderPE}}>
               <div style={{display: "flex", flexDirection: "column", alignItems: "center", gap: "22px", transform: loaderShift, transition: "transform 450ms cubic-bezier(0.23,1,0.32,1)"}}>
-                <div style={{display: "flex", alignItems: "center", gap: "12px"}}>
-                  <span style={{background: "#45D4D5", color: "#0D1012", fontWeight: "900", fontStretch: "125%", fontSize: "30px", padding: "8px 12px", borderRadius: "10px", letterSpacing: "-0.02em", lineHeight: "1"}}>
-                    {"604"}
-                  </span>
-                  <span style={{fontWeight: "800", fontStretch: "125%", fontSize: "30px", letterSpacing: "-0.01em", color: "#fff", lineHeight: "1"}}>
-                    {"Car Spa"}
-                  </span>
-                </div>
+                <img src={logo} alt="604 Car Spa · Mobile Auto Detailing" style={{width: "min(340px,80vw)", height: "auto", display: "block"}} />
                 <div style={{width: "160px", height: "2px", borderRadius: "2px", background: "rgba(255,255,255,0.14)", overflow: "hidden"}}>
                   <div data-load-bar="" style={{height: "100%", width: "100%", background: "#45D4D5", transformOrigin: "left center", transform: "scaleX(0)"}}></div>
                 </div>
@@ -350,13 +352,10 @@ class App extends React.Component {
         <header style={{position: "sticky", top: "0", zIndex: "50", background: "rgba(13,16,18,0.92)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", borderBottom: "1px solid #22272B"}}>
           <div style={{maxWidth: "1320px", margin: "0 auto", padding: "0 20px", height: "68px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "20px"}}>
             <a href="#/" aria-label="604 Car Spa home" style={{display: "flex", alignItems: "center", gap: "10px", textDecoration: "none", color: "#fff"}}>
-              <span style={{background: "#45D4D5", color: "#0D1012", fontWeight: "900", fontStretch: "125%", fontSize: "17px", padding: "5px 8px", borderRadius: "7px", letterSpacing: "-0.02em"}}>
-                {"604"}
-              </span>
+              <img src={logo} alt="" style={{height: "40px", width: "auto", display: "block"}} />
               <span style={{display: "flex", flexDirection: "column", lineHeight: "1.05"}}>
-                <span style={{fontWeight: "800", fontStretch: "125%", fontSize: "17px", letterSpacing: "-0.01em", color: "#fff"}}>
-                  {"Car Spa"}
-                </span>
+                <span style={{fontWeight: "800", fontStretch: "125%", fontSize: "14px", letterSpacing: "-0.01em", color: "#fff"}}>604 <span style={{color: "#45D4D5"}}>Car Spa</span></span>
+                <span style={{fontSize: "10px", color: "#A7AEB3", marginTop: "2px"}}>Mobile Auto Detailing</span>
               </span>
             </a>
             {isDesktop ? (
@@ -698,7 +697,7 @@ class App extends React.Component {
                       </div>
                       <div data-reveal="" style={{flex: "1 1 380px", display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: "clamp(12px,2vw,24px)", maxWidth: "620px"}}>
                         <div style={{aspectRatio: "9/16", borderRadius: "28px", overflow: "hidden", background: "#161A1D", border: "6px solid #22272B"}}>
-                          <video src="./media/reel-063.mp4" autoPlay={true} muted={true} loop playsInline preload="auto" aria-label="Instagram reel: detailing job" style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}></video>
+                          <video src="./media/reel-063.mp4" data-start="2.95" autoPlay={true} muted={true} loop playsInline preload="auto" aria-label="Instagram reel: detailing job" style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}></video>
                         </div>
                         <div style={{position: "relative", aspectRatio: "9/16", borderRadius: "28px", overflow: "hidden", background: "#161A1D", border: "6px solid #22272B", marginTop: "clamp(24px,5vw,64px)"}}>
                           <video src="./media/reel-pov.mp4#t=6" autoPlay={true} muted={true} playsInline preload="auto" data-pov="1" aria-label="Instagram reel: detailing from Swarn's point of view" style={{width: "100%", height: "100%", objectFit: "cover", display: "block"}}></video>
@@ -774,6 +773,14 @@ class App extends React.Component {
                 </div>
               </section>
             </>
+          ) : null}
+          {showNote ? (
+            <section data-screen-label="What we do" style={{position: "relative", marginTop: "calc(-1 * clamp(28px,4vw,64px))", clipPath: "polygon(0 clamp(28px,4vw,64px),100% 0,100% 100%,0 100%)", background: "#0D1012", color: "#fff"}}>
+              <div style={{maxWidth: "1320px", margin: "0 auto", padding: "96px 20px 72px"}}>
+                <p style={{margin: "0 0 12px", fontSize: "13px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#7FE3E4", fontWeight: "600"}}>What we do</p>
+                <p style={{margin: "0", maxWidth: "40ch", fontStretch: "125%", fontWeight: "700", fontSize: "clamp(22px,2.6vw,34px)", lineHeight: "1.25", letterSpacing: "-0.02em", textWrap: "pretty"}}>{noteText}</p>
+              </div>
+            </section>
           ) : null}
           {isHome ? (
             <>
@@ -1218,7 +1225,7 @@ class App extends React.Component {
               </div>
             </div>
           </section>
-          <section data-screen-label="Strips 2" aria-label="Licensed, insured, fully mobile" style={{position: "relative", background: "#0D1012", overflow: "hidden", padding: "clamp(48px,6vw,88px) 0", marginTop: "calc(-1 * clamp(28px,4vw,64px))", clipPath: "polygon(0 clamp(28px,4vw,64px),100% 0,100% 100%,0 100%)"}}>
+          <section data-screen-label="Strips 2" aria-label="Licensed, insured, fully mobile" style={{position: "relative", background: "#fff", overflow: "hidden", padding: "clamp(48px,6vw,88px) 0"}}>
             <div style={{transform: "rotate(2deg)", margin: "0 -40px"}}>
               {stripTop2}
             </div>
@@ -1250,14 +1257,7 @@ class App extends React.Component {
         <footer data-screen-label="Footer" style={{position: "relative", marginTop: "calc(-1 * clamp(28px,4vw,64px))", clipPath: "polygon(0 clamp(28px,4vw,64px),100% 0,100% 100%,0 100%)", background: "#0D1012", color: "#D5DADD"}}>
           <div style={{maxWidth: "1320px", margin: "0 auto", padding: "72px 20px 40px", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,220px),1fr))", gap: "40px"}}>
             <div>
-              <div style={{display: "flex", alignItems: "center", gap: "10px"}}>
-                <span style={{background: "#45D4D5", color: "#0D1012", fontWeight: "900", fontStretch: "125%", fontSize: "17px", padding: "5px 8px", borderRadius: "7px"}}>
-                  {"604"}
-                </span>
-                <span style={{fontWeight: "800", fontStretch: "125%", fontSize: "18px", color: "#fff"}}>
-                  {"Car Spa"}
-                </span>
-              </div>
+              <img src={logo} alt="604 Car Spa · Mobile Auto Detailing" style={{width: "220px", height: "auto", display: "block", marginLeft: "-12px"}} />
               <p style={{margin: "16px 0 0", fontSize: "15px", lineHeight: "1.6", color: "#A7AEB3"}}>
                 {"Your Ride · Our Responsibility. Owner-operated mobile detailing based in Surrey, BC."}
               </p>
