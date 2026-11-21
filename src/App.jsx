@@ -665,7 +665,7 @@ class App extends React.Component {
                     </a>
                   </div>
                   <div style={{position: "relative", minHeight: "320px", borderRadius: "24px", overflow: "hidden", background: "#161A1D"}}>
-                    <image-slot id="ceramic-beading" shape="rect" placeholder="Photo: water beading on freshly coated paint"></image-slot>
+                    <img src="./media/ceramic-beading.webp" alt="Water beading on freshly coated paint" loading="lazy" style={{position: "absolute", inset: "0", width: "100%", height: "100%", objectFit: "cover", display: "block"}} />
                   </div>
                 </div>
               </section>
@@ -1100,7 +1100,7 @@ class App extends React.Component {
               <section data-screen-label="Meet Swarn" style={{position: "relative", marginTop: "calc(-1 * clamp(28px,4vw,64px))", clipPath: "polygon(0 clamp(28px,4vw,64px),100% 0,100% 100%,0 100%)", background: "#0D1012", color: "#fff"}}>
                 <div style={{maxWidth: "1320px", margin: "0 auto", padding: "88px 20px", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,420px),1fr))", gap: "clamp(32px,5vw,72px)", alignItems: "center"}}>
                   <div style={{position: "relative", aspectRatio: "4/5", maxHeight: "680px", borderRadius: "24px", overflow: "hidden", background: "#161A1D"}}>
-                    <image-slot id="owner-swarn" shape="rect" placeholder="Photo: Swarn at work on a customer's car"></image-slot>
+                    <img src="./media/owner-swarn.webp" alt="Swarn at work on a customer's car" loading="lazy" style={{position: "absolute", inset: "0", width: "100%", height: "100%", objectFit: "cover", display: "block"}} />
                   </div>
                   <div>
                     <p style={{margin: "0 0 12px", fontSize: "13px", letterSpacing: "0.16em", textTransform: "uppercase", color: "#7FE3E4", fontWeight: "600"}}>
